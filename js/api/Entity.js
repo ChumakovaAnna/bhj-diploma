@@ -7,11 +7,6 @@ import { json } from "express"
  * */
 class Entity {
 
-	constructor() {
-		this.URL = "",
-		this.HOST = "https://bhj-diplom.letsdocode.ru"
-	}
-
 	/**
 	 * Запрашивает с сервера список данных.
 	 * Это могут быть счета или доходы/расходы
@@ -85,3 +80,5 @@ class Entity {
 	}
 }
 
+Entity.URL = "";
+Entity.HOST = "https://bhj-diplom.letsdocode.ru";

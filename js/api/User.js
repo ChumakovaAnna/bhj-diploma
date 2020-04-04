@@ -8,10 +8,6 @@ import { response } from "express";
  * */
 class User {
 
-  constructor() {
-		this.URL = "/user",
-		this.HOST = "https://bhj-diplom.letsdocode.ru"
-	}
   /**
    * Устанавливает текущего пользователя в
    * локальном хранилище.
@@ -136,3 +132,6 @@ class User {
     return createRequest(options);
   }
 }
+
+User.URL = "/user";
+User.HOST = "https://bhj-diplom.letsdocode.ru";
