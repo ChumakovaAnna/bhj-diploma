@@ -17,7 +17,7 @@ class Modal {
       this.element = element;
       this.registerEvents();
     } else {
-      throw new Error(`Ошибка. Element не найден`);
+      throw new Error(`Ошибка. Окно(Modal) не найдено`);
     }
   }
 
