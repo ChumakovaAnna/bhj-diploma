@@ -19,8 +19,6 @@ const createRequest = (options = {}) => {
 		}
 
 		urlXhr = options.url;
-	} else {
-		formData = null
 	}
 
 	xhr.addEventListener("load", () => {
