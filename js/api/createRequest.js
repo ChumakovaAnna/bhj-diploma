@@ -4,34 +4,42 @@
  * */
 const createRequest = (options = {}) => {
 	const xhr = new XMLHttpRequest();
-	const formData = new FormData;
+	let formData;
 	xhr.withCredentials = true;
 	xhr.responseType = "json";
 	let urlXhr;
 
-	if (options.method === "GET") {
+	if (options.method === "GET" && options.data) {
 		urlXhr = `${options.url}?mail=${options.data.mail}&password${options.data.password}`;
-	} else {
+	} else if(options.data) {
+		formData = new FormData;
 		for (let key in options.data) {
+			console.log(key, options.data[key])
 			formData.append(key, options.data[key]);
 		}
 
 		urlXhr = options.url;
+	} else {
+		formData = null
 	}
 
 	xhr.addEventListener("load", () => {
-		if (xhr.status != 200) {
+		if (xhr.status !== 200) {
 			options.callback(err, xhr.response)
 			console.log(err);
 		} else {
 			options.callback(null, xhr.response)
-			console.log(xhr.response);
 		}
 	});
+	
 
 	try {
 		xhr.open(options.method, urlXhr);
-		xhr.send(formData);
+		if (formData) {
+			xhr.send(formData);
+		} else {
+			xhr.send();
+		}
 	}
 	catch (err) {
 		callback(err);

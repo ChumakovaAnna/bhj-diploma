@@ -1,5 +1,3 @@
-import { json } from "express"
-
 /**
  * Класс Entity - базовый для взаимодействия с сервером.
  * Имеет свойство URL, равно пустой строке.
@@ -16,7 +14,7 @@ class Entity {
 		const options = {
 			url: this.HOST + this.URL,
 			data: data,
-			responseType: json,
+			responseType: "json",
 			method: "GET",
 			callback: callback
 		}
@@ -34,10 +32,10 @@ class Entity {
 		const options = {
 			url: this.HOST + this.URL,
 			data: modifieldData,
-			responseType: json,
+			responseType: "json",
 			method: "POST",
 			callback: callback
-		},
+		}
 
 		return createRequest(options);
 	}
@@ -51,7 +49,7 @@ class Entity {
 		const options = {
 			url: this.HOST + this.URL,
 			data: modifieldData,
-			responseType: json,
+			responseType: "json",
 			method: "GET",
 			callback: callback
 		}
@@ -71,7 +69,7 @@ class Entity {
 		const options = {
 			url: this.HOST + this.URL,
 			data: modifieldData,
-			responseType: json,
+			responseType: "json",
 			method: "POST",
 			callback: callback
 		}

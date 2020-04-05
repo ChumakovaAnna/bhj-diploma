@@ -1,5 +1,3 @@
-import { response } from "express";
-
 /**
  * Класс User управляет авторизацией, выходом и
  * регистрацией пользователя из приложения
@@ -44,16 +42,18 @@ class User {
     const options = {
       data: data,
       url: this.HOST + this.url + "/current",
-      resposeType: json,
+      resposeType: "json",
       method: "GET",
       callback: (err, response) => {
-        if (response.success === true && response.user) {
-          this.setCurrent(response.user);
-        } else {
-          this.unsetCurrent()
-          console.log(response.error);
+        if (err && response) {
+          if (response.success === true && response.user) {
+            this.setCurrent(response.user);
+          } else {
+            this.unsetCurrent()
+            console.log(response.error);
+          }
+          callback(err, response);
         }
-        callback(err, response);
       }
     }
     return createRequest(options);
@@ -69,7 +69,7 @@ class User {
     const options = {
       data: data,
       url: this.HOST + this.url + "/login",
-      resposeType: json,
+      resposeType: "json",
       method: "GET",
       callback: (err, response) => {
         if (response.success === true && response.user) {
@@ -93,7 +93,7 @@ class User {
     const options = {
       data: data,
       url: this.HOST + this.url + "/register",
-      resposeType: json,
+      resposeType: "json",
       method: "POST",
       callback: (err, response) => {
         if (response.success === true && response.user) {
@@ -120,7 +120,7 @@ class User {
     const options = {
       data: data,
       url: this.HOST + this.url + "/logout",
-      resposeType: json,
+      resposeType: "json",
       method: "POST",
       callback: (err, response) => {
         if (response.success === true) {
