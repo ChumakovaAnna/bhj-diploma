@@ -41,7 +41,7 @@ class User {
   static fetch( data, callback = f => f ) {
     const options = {
       data: data,
-      url: this.HOST + this.url + "/current",
+      url: this.HOST + this.URL + "/current",
       resposeType: "json",
       method: "GET",
       callback: (err, response) => {
@@ -68,9 +68,9 @@ class User {
   static login( data, callback = f => f ) {
     const options = {
       data: data,
-      url: this.HOST + this.url + "/login",
+      url: this.HOST + this.URL + "/login",
       resposeType: "json",
-      method: "GET",
+      method: "POST",
       callback: (err, response) => {
         if (response.success === true && response.user) {
           this.setCurrent(response.user);
@@ -92,7 +92,7 @@ class User {
   static register( data, callback = f => f ) {
     const options = {
       data: data,
-      url: this.HOST + this.url + "/register",
+      url: this.HOST + this.URL + "/register",
       resposeType: "json",
       method: "POST",
       callback: (err, response) => {
@@ -119,7 +119,7 @@ class User {
   static logout( data, callback = f => f ) {
     const options = {
       data: data,
-      url: this.HOST + this.url + "/logout",
+      url: this.HOST + this.URL + "/logout",
       resposeType: "json",
       method: "POST",
       callback: (err, response) => {
