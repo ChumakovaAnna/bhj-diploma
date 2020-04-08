@@ -29,7 +29,7 @@ class Modal {
   registerEvents() {
     const buttonsClose = this.element.querySelectorAll(`[data-dismiss="modal"]`);
     buttonsClose.forEach(ele => {
-      ele.addEventListener("click", (e) => { ele.onClose(e) });
+        ele.addEventListener("click", (e) => { this.onClose(e) });
     });
   }
 
@@ -39,14 +39,14 @@ class Modal {
    * */
   onClose(e) {
     e.preventDefault();
-    e.close();
+    this.close();
   }
   /**
    * Удаляет обработчики событий
    * */
   unregisterEvents() {
     const buttonsClose = this.element.querySelectorAll(`[data-dismiss="modal"]`);
-    buttonsClose.forEach(ele => {
+    buttonsClose.forEach((ele) => {
       ele.removeEventListener("click", (e) => { ele.onClose(e) });
     });
   }
