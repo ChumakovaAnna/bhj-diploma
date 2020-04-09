@@ -27,7 +27,7 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    if (localStorage.getItem("user")) {
+    if (localStorage.getItem("user") !== "undefined") {
       return JSON.parse(localStorage.getItem("user"));
     } else {
       return undefined;
@@ -126,6 +126,7 @@ class User {
         if (response.success === true) {
           this.unsetCurrent(response.user);
         }
+        console.log(err);
         callback(err, response);
       }
     }
@@ -134,4 +135,4 @@ class User {
 }
 
 User.URL = "/user";
-User.HOST = "https://bhj-diplom.letsdocode.ru";
+User.HOST = Entity.HOST;

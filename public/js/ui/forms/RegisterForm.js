@@ -3,7 +3,7 @@
  * регистрации
  * Наследуется от AsyncForm
  * */
-class RegisterForm {
+class RegisterForm extends AsyncForm {
   /**
    * Производит регистрацию с помощью User.register
    * После успешной регистрации устанавливает
@@ -17,7 +17,6 @@ class RegisterForm {
         App.setState("user-logged");
         const modal = App.getModal("register");
         modal.close();
-        console.log(err);
       }
     });
   }
