@@ -1,3 +1,4 @@
+
 /**
  * Класс User управляет авторизацией, выходом и
  * регистрацией пользователя из приложения
@@ -5,13 +6,12 @@
  * Имеет свойство URL, равное '/user'.
  * */
 class User {
-
   /**
    * Устанавливает текущего пользователя в
    * локальном хранилище.
    * */
   static setCurrent(user) {
-    localStorage.setItem("user", JSON.stringify(user));
+
   }
 
   /**
@@ -19,7 +19,7 @@ class User {
    * пользователе из локального хранилища.
    * */
   static unsetCurrent() {
-    localStorage.removeItem("user");
+
   }
 
   /**
@@ -27,11 +27,7 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    if (localStorage.getItem("user")) {
-      return JSON.parse(localStorage.getItem("user"));
-    } else {
-      return undefined;
-    }
+
   }
 
   /**
@@ -39,26 +35,9 @@ class User {
    * авторизованном пользователе.
    * */
   static fetch( data, callback = f => f ) {
-    const options = {
-      data: data,
-      url: this.HOST + this.url + "/current",
-      resposeType: "json",
-      method: "GET",
-      callback: (err, response) => {
-        if (err && response) {
-          if (response.success === true && response.user) {
-            this.setCurrent(response.user);
-          } else {
-            this.unsetCurrent()
-            console.log(response.error);
-          }
-          callback(err, response);
-        }
-      }
-    }
-    return createRequest(options);
+
   }
-  
+
   /**
    * Производит попытку авторизации.
    * После успешной авторизации необходимо
@@ -66,21 +45,7 @@ class User {
    * User.setCurrent.
    * */
   static login( data, callback = f => f ) {
-    const options = {
-      data: data,
-      url: this.HOST + this.url + "/login",
-      resposeType: "json",
-      method: "GET",
-      callback: (err, response) => {
-        if (response.success === true && response.user) {
-          this.setCurrent(response.user);
-        } else {
-          console.log(`Введен неверный e-mail или пароль`);
-        }
-        callback(err, response);
-      }
-    }
-    return createRequest(options);
+
   }
 
   /**
@@ -90,26 +55,7 @@ class User {
    * User.setCurrent.
    * */
   static register( data, callback = f => f ) {
-    const options = {
-      data: data,
-      url: this.HOST + this.url + "/register",
-      resposeType: "json",
-      method: "POST",
-      callback: (err, response) => {
-        if (response.success === true && response.user) {
-          this.setCurrent(response.user);
-        } else {
-          console.log(response.error);
-          if(response.error.email) {
-            console.log(response.error.email)
-          } else {
-            console.log(response.error.password)
-          }
-        }
-        callback(err, response);
-      }
-    }
-    return createRequest(options);
+
   }
 
   /**
@@ -117,21 +63,6 @@ class User {
    * выхода необходимо вызвать метод User.unsetCurrent
    * */
   static logout( data, callback = f => f ) {
-    const options = {
-      data: data,
-      url: this.HOST + this.url + "/logout",
-      resposeType: "json",
-      method: "POST",
-      callback: (err, response) => {
-        if (response.success === true) {
-          this.unsetCurrent(response.user);
-        }
-        callback(err, response);
-      }
-    }
-    return createRequest(options);
+
   }
 }
-
-User.URL = "/user";
-User.HOST = "https://bhj-diplom.letsdocode.ru";

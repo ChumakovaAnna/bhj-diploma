@@ -4,7 +4,5 @@
  * Управляет счетами пользователя.
  * Имеет свойство URL со значением '/account'
  * */
-class Account extends Entity {
+class Account {
 }
-
-Account.URL = "/account";
