@@ -14,19 +14,21 @@ const createRequest = (options = {}) => {
 	} else if(options.data) {
 		formData = new FormData;
 		for (let key in options.data) {
-			console.log(key, options.data[key])
 			formData.append(key, options.data[key]);
 		}
 
 		urlXhr = options.url;
 	}
 
-	xhr.addEventListener("load", () => {
-		if (xhr.status !== 200) {
-			options.callback(err, xhr.response)
-			console.log(err);
-		} else {
+	xhr.addEventListener("readystatechange", () => {
+		if (xhr.readyState === 4 && xhr.status === 200) {
 			options.callback(null, xhr.response)
+			console.log(xhr.response);
+		} else {
+			if(xhr.response) {
+				options.callback(err, xhr.response)
+				console.log(err);
+			}
 		}
 	});
 	
