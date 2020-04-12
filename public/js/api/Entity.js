@@ -13,10 +13,10 @@ class Entity {
 	static list(data, callback = f => f) {
 		const options = {
 			url: this.HOST + this.URL,
-			data: data,
 			responseType: "json",
 			method: "GET",
-			callback: callback
+			data,
+			callback
 		}
 
 		return createRequest(options);
@@ -34,7 +34,7 @@ class Entity {
 			data: modifieldData,
 			responseType: "json",
 			method: "POST",
-			callback: callback
+			callback
 		}
 
 		return createRequest(options);
@@ -51,7 +51,7 @@ class Entity {
 			data: modifieldData,
 			responseType: "json",
 			method: "GET",
-			callback: callback
+			callback
 		}
 
 		return createRequest(options);
@@ -71,7 +71,7 @@ class Entity {
 			data: modifieldData,
 			responseType: "json",
 			method: "POST",
-			callback: callback
+			callback
 		}
 
 		return createRequest(options);

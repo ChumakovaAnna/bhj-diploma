@@ -27,7 +27,7 @@ class User {
    * из локального хранилища
    * */
   static current() {
-    if (localStorage.getItem("user") !== "undefined") {
+    if (localStorage.getItem("user")) {
       return JSON.parse(localStorage.getItem("user"));
     } else {
       return undefined;
@@ -49,7 +49,7 @@ class User {
           if (response.success === true && response.user) {
             this.setCurrent(response.user);
           } else {
-            this.unsetCurrent()
+            this.unsetCurrent();
             console.log(response.error);
           }
           callback(err, response);
@@ -123,10 +123,11 @@ class User {
       resposeType: "json",
       method: "POST",
       callback: (err, response) => {
-        if (response.success === true) {
+        if (response.success === true && response.user) {
           this.unsetCurrent(response.user);
+        } else {
+          console.log(response.error);
         }
-        console.log(err);
         callback(err, response);
       }
     }
