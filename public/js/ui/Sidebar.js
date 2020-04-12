@@ -55,5 +55,15 @@ class Sidebar {
       e.preventDefault();
       openModal(loginStr)
     });
+    
+    exit.addEventListener("click", (e) => {
+      e.preventDefault();
+      User.logout({}, (err, response) => {
+        if (response.success === true) {
+          User.unsetCurrent();
+          App.setState( "init" );
+        }
+      });
+    });
   }
 }
