@@ -26,9 +26,11 @@ class AsyncForm {
    * вызывает метод submit()
    * */
   registerEvents() {
-      this.element.addEventListener("submit", (e) => {
-      e.preventDefault();
-      this.submit();
+    this.element.addEventListener("submit", (e) => {
+      if (this.element.checkValidity()) {
+        e.preventDefault();
+        this.submit();
+      }
     })
   }
 
@@ -46,6 +48,7 @@ class AsyncForm {
     for (let [name, value] of form) {
       formValue[name] = value;
     }
+
     return formValue;
   }
 
