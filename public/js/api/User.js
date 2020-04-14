@@ -28,6 +28,7 @@ class User {
    * */
   static current() {
     if (localStorage.getItem("user")) {
+      console.log(JSON.parse(localStorage.getItem("user")));
       return JSON.parse(localStorage.getItem("user"));
     } else {
       return undefined;
@@ -42,10 +43,10 @@ class User {
     const options = {
       data: data,
       url: this.HOST + this.URL + "/current",
-      resposeType: "json",
+      responseType: "json",
       method: "GET",
       callback: (err, response) => {
-        if (err && response) {
+        if (response) {
           if (response.success === true && response.user) {
             this.setCurrent(response.user);
           } else {
@@ -56,6 +57,7 @@ class User {
         }
       }
     }
+
     return createRequest(options);
   }
   
@@ -69,7 +71,7 @@ class User {
     const options = {
       data: data,
       url: this.HOST + this.URL + "/login",
-      resposeType: "json",
+      responseType: "json",
       method: "POST",
       callback: (err, response) => {
         if (response.success === true && response.user) {
@@ -93,7 +95,7 @@ class User {
     const options = {
       data: data,
       url: this.HOST + this.URL + "/register",
-      resposeType: "json",
+      responseType: "json",
       method: "POST",
       callback: (err, response) => {
         if (response.success === true && response.user) {
@@ -120,7 +122,7 @@ class User {
     const options = {
       data: data,
       url: this.HOST + this.URL + "/logout",
-      resposeType: "json",
+      responseType: "json",
       method: "POST",
       callback: (err, response) => {
         if (response.success === true && response.user) {
