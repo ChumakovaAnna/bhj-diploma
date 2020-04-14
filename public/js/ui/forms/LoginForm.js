@@ -13,7 +13,7 @@ class LoginForm extends AsyncForm {
   onSubmit( options ) {
     User.login(options, (err, response) => {
       if (response && response.success === true) {
-        this.element.reset;
+        this.element.reset();
         App.setState("user-logged");
         const modal = App.getModal("login");
         modal.close();
