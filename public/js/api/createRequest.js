@@ -3,7 +3,6 @@
  * на сервер.
  * */
 const createRequest = (options = {}) => {
-	console.log(options);
 	const xhr = new XMLHttpRequest();
 	let formData;
 	xhr.withCredentials = true;
@@ -32,14 +31,13 @@ const createRequest = (options = {}) => {
 	xhr.addEventListener("load", () => {
 		if (xhr.status === 200) {
 			options.callback(null, xhr.response)
-			console.log(xhr.response);
 		} else {
 			if (xhr.response) {
 				options.callback(err, xhr.response)
 				console.log(`Ошибка createRequest`);
 				console.log(err);
 			} else {
-				console.log(`Что-то пошло не так! xhr.response = indefined`);
+				console.log(`Что-то пошло не так! xhr.response = undefined`);
 			}
 		}
 	});
