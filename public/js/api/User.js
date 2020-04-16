@@ -101,11 +101,6 @@ class User {
           this.setCurrent(response.user);
         } else {
           console.log(response.error);
-          if(response.error.email) {
-            console.log(response.error.email)
-          } else {
-            console.log(response.error.password)
-          }
         }
         callback(err, response);
       }
@@ -124,8 +119,8 @@ class User {
       responseType: "json",
       method: "POST",
       callback: (err, response) => {
-        if (response.success === true && response.user) {
-          this.unsetCurrent(response.user);
+        if (response.success === true) {
+          this.unsetCurrent();
         } else {
           console.log(response.error);
         }

@@ -34,7 +34,6 @@ const createRequest = (options = {}) => {
 		} else {
 			if (xhr.response) {
 				options.callback(err, xhr.response)
-				console.log(`Ошибка createRequest`);
 				console.log(err);
 			} else {
 				console.log(`Что-то пошло не так! xhr.response = undefined`);
