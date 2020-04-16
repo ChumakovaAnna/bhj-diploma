@@ -15,7 +15,7 @@ class TransactionsPage {
       this.element = element;
       this.registerEvents();
     } else {
-      console.log(`Ошибка. Element (TransactionsPage) не найден`);
+      throw new Error(`Ошибка. Element (TransactionsPage) не найден`);
     }
   }
 
@@ -94,7 +94,6 @@ class TransactionsPage {
       this.lastOptions = options;
       Account.get(options.account_id, {}, (err, response) => {
         if (response) {
-          console.log(response);
           if (response.data) {
             this.renderTitle(response.data.name);
           }
@@ -204,7 +203,6 @@ class TransactionsPage {
     if (data) {
       content.innerHTML = "";
       data.forEach(e => {
-        console.log(e);
         content.innerHTML += this.getTransactionHTML(e);
       });
     }
